@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+     <link rel="stylesheet" href="ss.css">
+    </head>
+    <body>
+      <div class="container">
+        <h2>Data Form</h2>
+        <div class="form-group">
+            <label for="code">Code:</label>
+            <input type="number" id="code" name="code">
+        </div>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+        </div>
+        <div class="form-group">
+            <label for="program">Program:</label>
+            <select id="program" name="program">
+                <option value="" disabled selected>Select Program</option>
+                <option value="it">IT</option>
+                <option value="mechanical">Mechatronics</option>
+                <option value="automation">Autotronics</option>
+                <option value="energy">Energy</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="mobile">Mobile Number:</label>
+            <input type="text" id="mobile" name="mobile">
+        </div>
+        <div class="row-group">
+          <div class="form-group">
+              <label for="grade">Grade:</label>
+              <select id="grade" name="grade">
+                  <option value="" disabled selected>Select Grade</option>
+                  <option value="first">First</option>
+                  <option value="second">Second</option>
+                  <option value="third">Third</option>
+                  <option value="fourth">Fourth</option>
+              </select>
+          </div>
+          <div class="form-group">
+              <label for="activity-type">Activity Type:</label>
+              <select id="activity-type" name="activity-type" onchange="toggleActivityDetails(this.value)">
+                  <option value="" disabled selected>Select Activity Type</option>
+                  <option value="training">Training</option>
+                  <option value="visit">Visit</option>
+              </select>
+          </div>
+      </div>
+      <div id="training-details" class="details-container" style="display:none;">
+        <h3>Training Details</h3>
+        <div class="details-item">
+            <label for="training-name">Training Name:</label>
+            <input type="text" id="training-name" name="training-name">
+        </div>
+        <div class="details-item">
+            <label for="training-duration">Training Duration:</label>
+            <input type="text" id="training-duration" name="training-duration">
+        </div>
+        <div class="details-item">
+            <label for="training-certificate">Training Certificate Image:</label>
+            <input type="file" id="training-certificate" name="training-certificate" accept="image/*" onchange="previewImage(this, 'training-certificate-preview')">
+            <img id="training-certificate-preview" src="#" alt="Certificate Preview" class="image-preview" style="display:none;">
+        </div>
+    </div>
+    <div id="visit-details" class="details-container" style="display:none;">
+        <h3>Visit Details</h3>
+        <div class="details-item">
+            <label for="visit-name">Visit Name:</label>
+            <input type="text" id="visit-name" name="visit-name">
+        </div>
+        <div class="details-item">
+          <label for="visit-certificate">Visit Certificate Image:</label>
+          <input type="file" id="visit-certificate" name="visit-certificate" accept="image/*" onchange="previewImage(this, 'visit-certificate-preview')">
+          <img id="visit-certificate-preview" src="#" alt="Certificate Preview" class="image-preview" style="display:none;">
+      </div>
+      <div class="details-item">
+          <label for="visit-report">Visit Report:</label>
+          <input type="file" id="visit-report" name="visit-report" accept=".pdf, .doc, .docx">
+      </div>
+  </div>
+  <button type="submit">Submit</button>
+</div>
+</form>
+<script>
+  function toggleActivityDetails(activity) {
+      const trainingDetails = document.getElementById('training-details');
+      const visitDetails = document.getElementById('visit-details');
+
+      if (activity === 'training') {
+          trainingDetails.style.display = 'block';
+          visitDetails.style.display = 'none';
+      } else if (activity === 'visit') {
+          trainingDetails.style.display = 'none';
+          visitDetails.style.display = 'block';
+      } else {
+          trainingDetails.style.display = 'none';
+          visitDetails.style.display = 'none';
+      }
+  }
+
+  function previewImage(input, previewId) {
+      const preview = document.getElementById(previewId);
+      const file = input.files[0];
+
+      if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+              preview.src = e.target.result;
+              preview.style.display = 'block';
+          }
+          reader.readAsDataURL(file);
+      } else {
+          preview.src = '#';
+          preview.style.display = 'none';
+      }
+  }
+</script>
+
+</body>
+    </html>
+
+
+
+
+
+     

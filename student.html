@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>بيانات الطالب</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="input-container">
+    <input type="text" id="studentCode" disabled />
+    <button id="searchButton">عرض البيانات</button>
+  </div>
+
+  <div class="stats-grid">
+    <div class="box" id="trainingCount">عدد التدريبات: </div>
+    <div class="box" id="visitCount">عدد الزيارات: </div>
+    <div class="box" id="remainingTrainings">عدد التدريبات المتبقيه: </div>
+    <div class="box" id="remainingVisits">عدد الزيارات المتبقيه: </div>
+  </div>
+
+  <div class="achievements">
+    <div class="achievement-box"></div>
+    <div class="achievement-box"></div>
+    <div class="achievement-box"></div>
+    <div class="achievement-box"></div>
+    <div class="achievement-box"></div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+    document.getElementById("studentCode").value = code || "";
+  </script>
+</body>
+</html>
